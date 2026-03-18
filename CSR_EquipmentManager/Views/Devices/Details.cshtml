@@ -1,0 +1,76 @@
+﻿@model CSR_EquipmentManager.Models.Device
+
+@{
+    ViewBag.Title = "Chi Tiết Thiết Bị";
+}
+
+<div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+        <h4 class="mb-0"><i class="fas fa-info-circle me-2"></i> Chi Tiết Thiết Bị</h4>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <dl class="row">
+                    <dt class="col-sm-5">Mã Hồ Sơ:</dt>
+                    <dd class="col-sm-7">@Model.HoSoCode</dd>
+
+                    <dt class="col-sm-5">Tên Thiết Bị:</dt>
+                    <dd class="col-sm-7 fw-bold">@Model.DeviceName</dd>
+
+                    <dt class="col-sm-5">Nhà Máy:</dt>
+                    <dd class="col-sm-7">@Model.Factory</dd>
+
+                    <dt class="col-sm-5">Tòa Nhà:</dt>
+                    <dd class="col-sm-7">@Model.Building</dd>
+
+                    <dt class="col-sm-5">Tầng:</dt>
+                    <dd class="col-sm-7">@Model.Floor</dd>
+
+                    <dt class="col-sm-5">Vị Trí:</dt>
+                    <dd class="col-sm-7">@Model.PositionCode</dd>
+                </dl>
+            </div>
+            <div class="col-md-6">
+                <dl class="row">
+                    <dt class="col-sm-5">Mã Thiết Bị:</dt>
+                    <dd class="col-sm-7">@Model.DeviceCode</dd>
+
+                    <dt class="col-sm-5">Model:</dt>
+                    <dd class="col-sm-7">@Model.ModelCode</dd>
+
+                    <dt class="col-sm-5">Công Suất:</dt>
+                    <dd class="col-sm-7">@Model.Capacity</dd>
+
+                    <dt class="col-sm-5">Năm Sản Xuất:</dt>
+                    <dd class="col-sm-7">@Model.ManufactureYear</dd>
+
+                    <dt class="col-sm-5">Vị Trí Chi Tiết:</dt>
+                    <dd class="col-sm-7">@Model.Location</dd>
+
+                    <dt class="col-sm-5">Biên Bản Kiểm Định:</dt>
+                    <dd class="col-sm-7">@Model.InspectionReport</dd>
+                </dl>
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="row">
+            <div class="col-md-6">
+                <strong>Ngày Kiểm Định:</strong> @(Model.InspectionDate?.ToString("dd/MM/yyyy") ?? "Chưa có")
+            </div>
+            <div class="col-md-6">
+                <strong>Ngày Kiểm Định Tiếp Theo:</strong> @(Model.NextInspectionDate?.ToString("dd/MM/yyyy") ?? "Chưa có")
+            </div>
+        </div>
+    </div>
+    <div class="card-footer bg-light">
+        <a href="@Url.Action("Edit", new { id = Model.Id })" class="btn btn-warning">
+            <i class="fas fa-edit"></i> Sửa Thông Tin
+        </a>
+        <a href="@Url.Action("Index")" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Quay Về Danh Sách
+        </a>
+    </div>
+</div>

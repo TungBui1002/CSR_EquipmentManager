@@ -1,0 +1,62 @@
+﻿@model IEnumerable<CSR_EquipmentManager.Models.Device>
+
+@{
+    ViewBag.Title = "Danh sách Thiết Bị";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="mb-0"><i class="fas fa-list me-2"></i> Danh sách Thiết Bị</h2>
+    <a href="@Url.Action("Create")" class="btn btn-success btn-lg">
+        <i class="fas fa-plus"></i> Thêm Thiết Bị Mới
+    </a>
+</div>
+
+<div class="card">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0" id="devicesTable">
+                <thead class="table-light">
+                    <tr>
+                        <th>Mã Hồ Sơ</th>
+                        <th>Mã Thiết Bị</th>
+                        <th>Tên Thiết Bị</th>
+                        <th>Nhà Máy</th>
+                        <th>Tòa Nhà - Tầng</th>
+                        <th>Vị Trí</th>
+                        <th>Model</th>
+                        <th>Ngày Kiểm Định</th>
+                        <th>Ngày Kiểm Định Tiếp Theo</th>
+                        <th class="text-center">Thao Tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td><strong>@item.HoSoCode</strong></td>
+                            <td>@item.DeviceCode</td>
+                            <td>@item.DeviceName</td>
+                            <td>@item.Factory</td>
+                            <td>@item.Building - @item.Floor</td>
+                            <td>@item.PositionCode</td>
+                            <td>@item.ModelCode</td>
+                            <td>@(item.InspectionDate?.ToString("yyyy/MM/dd") ?? "-")</td>
+                            <td>@(item.NextInspectionDate?.ToString("yyyy/MM/dd") ?? "-")</td>
+                            <td class="text-center">
+                                <a href="@Url.Action("Details", new { id = item.Id })" class="btn btn-info btn-sm">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-warning btn-sm">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-danger btn-sm">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

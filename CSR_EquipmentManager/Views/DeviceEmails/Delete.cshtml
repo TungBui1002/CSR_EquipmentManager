@@ -1,0 +1,30 @@
+﻿@model CSR_EquipmentManager.Models.DeviceEmail
+
+@{
+    ViewBag.Title = "Xác Nhận Xóa Email";
+}
+
+<div class="card border-danger">
+    <div class="card-header bg-danger text-white">
+        <h4><i class="fas fa-exclamation-triangle me-2"></i> Xác Nhận Xóa Email</h4>
+    </div>
+    <div class="card-body">
+        <h5>Bạn có chắc chắn muốn xóa email này không?</h5>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-4">Thiết Bị:</dt>
+            <dd class="col-sm-8">@(Model.Device?.HoSoCode) - @(Model.Device?.DeviceName)</dd>
+
+            <dt class="col-sm-4">Email:</dt>
+            <dd class="col-sm-8 fw-bold">@Model.Email</dd>
+        </dl>
+    </div>
+    <div class="card-footer bg-light">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-danger btn-lg px-4">Có, Xóa Email</button>
+            <a href="@Url.Action("Index")" class="btn btn-secondary btn-lg px-4">Không, Quay Lại</a>
+        }
+    </div>
+</div>

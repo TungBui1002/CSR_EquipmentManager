@@ -1,87 +1,86 @@
 ﻿@model CSR_EquipmentManager.Models.Device
 
 <div class="row g-3">
+
     <div class="col-md-6">
-        @Html.LabelFor(m => m.HoSoCode, new { @class = "form-label fw-bold" })
-        @Html.EditorFor(m => m.HoSoCode, new { htmlAttributes = new { @class = "form-control" } })
+        <label class="form-label fw-bold">Mã hồ sơ</label>
+        @Html.TextBoxFor(m => m.HoSoCode, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.HoSoCode, "", new { @class = "text-danger" })
     </div>
 
     <div class="col-md-6">
-        @Html.LabelFor(m => m.DeviceName, new { @class = "form-label fw-bold" })
-        @Html.EditorFor(m => m.DeviceName, new { htmlAttributes = new { @class = "form-control" } })
+        <label class="form-label fw-bold text-danger">Tên thiết bị *</label>
+        @Html.TextBoxFor(m => m.DeviceName, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.DeviceName, "", new { @class = "text-danger" })
     </div>
 
     <div class="col-md-4">
-        @Html.LabelFor(m => m.Factory, new { @class = "form-label fw-bold" })
-        @Html.EditorFor(m => m.Factory, new { htmlAttributes = new { @class = "form-control" } })
+        <label class="form-label fw-bold">Xưởng</label>
+        @Html.TextBoxFor(m => m.Factory, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.Factory, "", new { @class = "text-danger" })
     </div>
 
     <div class="col-md-4">
-        @Html.LabelFor(m => m.Building, new { @class = "form-label fw-bold" })
-        @Html.EditorFor(m => m.Building, new { htmlAttributes = new { @class = "form-control" } })
+        <label class="form-label fw-bold">Tòa nhà</label>
+        @Html.TextBoxFor(m => m.Building, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.Building, "", new { @class = "text-danger" })
     </div>
 
     <div class="col-md-4">
-        @Html.LabelFor(m => m.Floor, new { @class = "form-label fw-bold" })
-        @Html.EditorFor(m => m.Floor, new { htmlAttributes = new { @class = "form-control" } })
+        <label class="form-label fw-bold">Tầng</label>
+        @Html.TextBoxFor(m => m.Floor, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.Floor, "", new { @class = "text-danger" })
     </div>
 
-    <div class="col-md-6">
-        @Html.LabelFor(m => m.PositionCode, new { @class = "form-label fw-bold" })
-        @Html.EditorFor(m => m.PositionCode, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(m => m.PositionCode, "", new { @class = "text-danger" })
+    <div class="col-md-4">
+        <label class="form-label fw-bold">STT</label>
+        @Html.TextBoxFor(m => m.STT, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.STT, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="col-md-4">
+        <label class="form-label fw-bold">Mã vị trí</label>
+        @Html.TextBoxFor(m => m.PositionCode, new { @class = "form-control" })
+    </div>
+
+    <div class="col-md-4">
+        <label class="form-label fw-bold">Mã thiết bị</label>
+        @Html.TextBoxFor(m => m.DeviceCode, new { @class = "form-control" })
     </div>
 
     <div class="col-md-6">
-        @Html.LabelFor(m => m.DeviceCode, new { @class = "form-label fw-bold" })
-        @Html.EditorFor(m => m.DeviceCode, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(m => m.DeviceCode, "", new { @class = "text-danger" })
+        <label class="form-label fw-bold">Mã hiệu thiết bị</label>
+        @Html.TextBoxFor(m => m.ModelCode, new { @class = "form-control" })
     </div>
 
     <div class="col-md-6">
-        @Html.LabelFor(m => m.ModelCode, new { @class = "form-label fw-bold" })
-        @Html.EditorFor(m => m.ModelCode, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(m => m.ModelCode, "", new { @class = "text-danger" })
+        <label class="form-label fw-bold">Dung tích</label>
+        @Html.TextBoxFor(m => m.Capacity, new { @class = "form-control" })
+    </div>
+
+    <div class="col-md-4">
+        <label class="form-label fw-bold">Năm chế tạo</label>
+        @Html.TextBoxFor(m => m.ManufactureYear, new { @class = "form-control" })
+    </div>
+
+    <div class="col-md-8">
+        <label class="form-label fw-bold">Vị trí thiết bị</label>
+        @Html.TextBoxFor(m => m.Location, new { @class = "form-control" })
     </div>
 
     <div class="col-md-6">
-        @Html.LabelFor(m => m.Capacity, new { @class = "form-label fw-bold" })
-        @Html.EditorFor(m => m.Capacity, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(m => m.Capacity, "", new { @class = "text-danger" })
-    </div>
-
-    <div class="col-md-6">
-        @Html.LabelFor(m => m.ManufactureYear, new { @class = "form-label fw-bold" })
-        @Html.EditorFor(m => m.ManufactureYear, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(m => m.ManufactureYear, "", new { @class = "text-danger" })
-    </div>
-
-    <div class="col-md-6">
-        @Html.LabelFor(m => m.Location, new { @class = "form-label fw-bold" })
-        @Html.EditorFor(m => m.Location, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(m => m.Location, "", new { @class = "text-danger" })
-    </div>
-
-    <div class="col-md-6">
-        @Html.LabelFor(m => m.InspectionReport, new { @class = "form-label fw-bold" })
-        @Html.EditorFor(m => m.InspectionReport, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(m => m.InspectionReport, "", new { @class = "text-danger" })
+        <label class="form-label fw-bold">Biên bản kiểm định</label>
+        @Html.TextBoxFor(m => m.InspectionReport, new { @class = "form-control" })
     </div>
 
     <div class="col-md-3">
-        @Html.LabelFor(m => m.InspectionDate, new { @class = "form-label fw-bold" })
-        @Html.EditorFor(m => m.InspectionDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
-        @Html.ValidationMessageFor(m => m.InspectionDate, "", new { @class = "text-danger" })
+        <label class="form-label fw-bold">Ngày kiểm định</label>
+        @Html.TextBoxFor(m => m.InspectionDate, "{0:yyyy-MM-dd}",new { @class = "form-control", type = "date" })
     </div>
 
     <div class="col-md-3">
-        @Html.LabelFor(m => m.NextInspectionDate, new { @class = "form-label fw-bold" })
-        @Html.EditorFor(m => m.NextInspectionDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
-        @Html.ValidationMessageFor(m => m.NextInspectionDate, "", new { @class = "text-danger" })
+        <label class="form-label fw-bold">Ngày kiểm định tiếp theo</label>
+        @Html.TextBoxFor(m => m.NextInspectionDate, "{0:yyyy-MM-dd}",new { @class = "form-control", type = "date" })
     </div>
+
 </div>

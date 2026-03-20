@@ -4,7 +4,7 @@
     ViewBag.Title = "Sửa Thông Tin Thiết Bị";
 }
 
-<div class="card">
+<div class="card shadow-sm">
     <div class="card-header bg-warning text-dark">
         <h4 class="mb-0"><i class="fas fa-edit me-2"></i> Sửa Thông Tin Thiết Bị</h4>
     </div>
@@ -16,16 +16,20 @@
             @Html.HiddenFor(model => model.Id)
 
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-lg-8">
                     @Html.Partial("_DeviceFormFields", Model)
                 </div>
             </div>
 
-            <div class="mt-4">
+            <hr />
+
+            <div class="text-end">
+                <a href="@Url.Action("Index")" class="btn btn-secondary btn-lg me-2">
+                    <i class="fas fa-arrow-left"></i> Hủy
+                </a>
                 <button type="submit" class="btn btn-warning btn-lg px-5">
                     <i class="fas fa-save"></i> Lưu Thay Đổi
                 </button>
-                <a href="@Url.Action("Index")" class="btn btn-secondary btn-lg">Hủy</a>
             </div>
         }
     </div>

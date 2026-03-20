@@ -8,8 +8,10 @@
     <div class="card-header bg-primary text-white">
         <h4 class="mb-0"><i class="fas fa-plus me-2"></i> Thêm Email Cho Thiết Bị</h4>
     </div>
+
     <div class="card-body">
-        @using (Html.BeginForm())
+        <!-- Form thêm email đơn lẻ -->
+        @using (Html.BeginForm("Create", "DeviceEmails", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -32,8 +34,49 @@
                 <button type="submit" class="btn btn-primary btn-lg px-5">
                     <i class="fas fa-save"></i> Thêm Email
                 </button>
-                <a href="@Url.Action("Index")" class="btn btn-secondary btn-lg">Hủy</a>
+                <a href="@Url.Action("Index")" class="btn btn-secondary btn-lg ms-2">Hủy</a>
+            </div>
+        }
+
+        <hr class="my-4" />
+
+        <!-- Phần Import Excel -->
+        <h5 class="mb-3"><i class="fas fa-upload me-2"></i> Import Email hàng loạt từ Excel</h5>
+        <p class="text-muted small mb-3">
+            File cần 2 cột: <strong>Cột A = Mã hồ sơ (HoSoCode)</strong>, <strong>Cột B = Email</strong><br>
+            Dòng đầu tiên là tiêu đề (bỏ qua).
+        </p>
+
+        @using (Html.BeginForm("Import", "DeviceEmails", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="input-group mb-3">
+                <input type="file" name="excelFile" class="form-control" accept=".xlsx" required />
+                <button type="submit" class="btn btn-outline-primary">
+                    <i class="fas fa-upload"></i> Xác nhận thêm mail hàng loạt
+                </button>
             </div>
         }
     </div>
 </div>
+
+@section scripts {
+    <script>
+    $(document).ready(function () {
+        var importMsg = @Html.Raw(Json.Encode(ViewBag.ImportMessage));
+
+        if (importMsg) {
+            var parts = importMsg.split('|');
+            var type = parts[0];
+            var text = parts[1];
+
+            if (type === "success") {
+                toastr.success(text, "Thành công", { escapeHtml: false });
+            } else if (type === "error") {
+                toastr.error(text, "Lỗi", { escapeHtml: false });
+            }
+        }
+    });
+    </script>
+}

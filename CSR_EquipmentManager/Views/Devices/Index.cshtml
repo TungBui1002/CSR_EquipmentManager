@@ -5,7 +5,7 @@
 }
 
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2 class="mb-0"><i class="fas fa-list me-2"></i> Danh sách Thiết Bị</h2>
+    <h2 class="mb-0"><i class="fas fa-list me-2"></i> Danh Sách Thiết Bị</h2>
     <a href="@Url.Action("Create")" class="btn btn-success btn-lg">
         <i class="fas fa-plus"></i> Thêm Thiết Bị Mới
     </a>
@@ -17,15 +17,16 @@
             <table class="table table-hover align-middle mb-0" id="devicesTable">
                 <thead class="table-light">
                     <tr>
-                        <th>Mã Hồ Sơ</th>
+                        <th class="text-center">Mã Hồ Sơ</th>
+                        <th class="text-center">Xưởng</th>
+                        <th class="text-center">Tòa Nhà - Tầng</th>
+                        <th class="text-center">STT - Vị Trí</th>
                         <th>Mã Thiết Bị</th>
                         <th>Tên Thiết Bị</th>
-                        <th>Nhà Máy</th>
-                        <th>Tòa Nhà - Tầng</th>
-                        <th>Vị Trí</th>
                         <th>Model</th>
-                        <th>Ngày Kiểm Định</th>
-                        <th>Ngày Kiểm Định Tiếp Theo</th>
+                        <th>Vị trí thiết bị</th>
+                        <th class="text-center">Ngày NT Kiểm Định</th>
+                        <th class="text-center">Ngày NT Kiểm Định Tiếp Theo</th>
                         <th class="text-center">Thao Tác</th>
                     </tr>
                 </thead>
@@ -33,15 +34,16 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td><strong>@item.HoSoCode</strong></td>
+                            <td class="text-center"><strong>@item.HoSoCode</strong></td>
+                            <td class="text-center">@item.Factory </td>
+                            <td class="text-center">@item.Building - @item.Floor</td>
+                            <td class="text-center">@item.STT - @item.PositionCode</td>
                             <td>@item.DeviceCode</td>
                             <td>@item.DeviceName</td>
-                            <td>@item.Factory</td>
-                            <td>@item.Building - @item.Floor</td>
-                            <td>@item.PositionCode</td>
                             <td>@item.ModelCode</td>
-                            <td>@(item.InspectionDate?.ToString("yyyy/MM/dd") ?? "-")</td>
-                            <td>@(item.NextInspectionDate?.ToString("yyyy/MM/dd") ?? "-")</td>
+                            <td>@item.Location</td>
+                            <td class="text-center">@(item.InspectionDate?.ToString("yyyy/MM/dd") ?? "-")</td>
+                            <td class="text-center">@(item.NextInspectionDate?.ToString("yyyy/MM/dd") ?? "-")</td>
                             <td class="text-center">
                                 <a href="@Url.Action("Details", new { id = item.Id })" class="btn btn-info btn-sm">
                                     <i class="fas fa-eye"></i>

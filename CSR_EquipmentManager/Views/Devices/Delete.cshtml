@@ -6,7 +6,7 @@
 
 <div class="card border-danger">
     <div class="card-header bg-danger text-white">
-        <h4><i class="fas fa-exclamation-triangle"></i> Xác Nhận Xóa</h4>
+        <h4><i class="fas fa-exclamation-triangle me-2"></i> Xác Nhận Xóa Thiết Bị</h4>
     </div>
     <div class="card-body">
         <h5>Bạn có chắc chắn muốn xóa thiết bị này không?</h5>
@@ -18,12 +18,14 @@
             <dd class="col-sm-8 fw-bold">@Model.DeviceName</dd>
         </dl>
     </div>
-    <div class="card-footer bg-light">
-        @using (Html.BeginForm())
+    <div class="card-footer bg-light text-end">
+        @using (Html.BeginForm("Delete", "Devices", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.Id)
+
+            <a href="@Url.Action("Index")" class="btn btn-secondary btn-lg me-3">Không, Quay Lại</a>
             <button type="submit" class="btn btn-danger btn-lg">Có, Xóa Thiết Bị</button>
-            <a href="@Url.Action("Index")" class="btn btn-secondary btn-lg">Không, Quay Lại</a>
         }
     </div>
 </div>

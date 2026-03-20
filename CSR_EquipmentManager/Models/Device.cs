@@ -16,7 +16,7 @@ namespace CSR_EquipmentManager.Models
         public string STT { get; set; }
         public string PositionCode { get; set; }
         public string DeviceCode { get; set; }
-
+        [Required]
         public string DeviceName { get; set; }
         public string Capacity { get; set; }
         public string ModelCode { get; set; }

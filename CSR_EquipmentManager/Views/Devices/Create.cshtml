@@ -4,7 +4,7 @@
     ViewBag.Title = "Thêm Thiết Bị Mới";
 }
 
-<div class="card">
+<div class="card shadow-sm">
     <div class="card-header bg-success text-white">
         <h4 class="mb-0"><i class="fas fa-plus me-2"></i> Thêm Thiết Bị Mới</h4>
     </div>
@@ -13,19 +13,41 @@
         {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.Id)
+            @*@Html.HiddenFor(model => model.Id)*@
 
             <div class="row">
-                <div class="col-md-6">
+                <!-- Cột trái -->
+                <div class="col-lg-6">
                     @Html.Partial("_DeviceFormFields", Model)
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="alert alert-info">
+                        <h6><i class="fas fa-lightbulb"></i> Hướng dẫn</h6>
+                        <ul class="mb-0">
+                            <li>Tên thiết bị là bắt buộc</li>
+                            <li>Ngày kiểm định nên nhập theo định dạng yyyy/MM/dd</li>
+                            <li>Sau khi tạo xong bạn có thể thêm Email cho thiết bị</li>
+                        </ul>
+                    </div>
+                    <a href="@Url.Action("DownloadTemplate")" class="btn btn-outline-secondary btn-lg">
+                        <i class="fas fa-download"></i> Tải Mẫu Excel
+                    </a>
+                    <a href="@Url.Action("Import")" class="btn btn-outline-primary btn-lg">
+                        <i class="fas fa-upload"></i> Import Từ Excel
+                    </a>
                 </div>
             </div>
 
-            <div class="mt-4">
+            <hr />
+
+            <div class="text-end">
+                <a href="@Url.Action("Index")" class="btn btn-secondary btn-lg me-2">
+                    <i class="fas fa-arrow-left"></i> Hủy
+                </a>
                 <button type="submit" class="btn btn-success btn-lg px-5">
-                    <i class="fas fa-save"></i> Tạo Mới
+                    <i class="fas fa-save"></i> Tạo Thiết Bị Mới
                 </button>
-                <a href="@Url.Action("Index")" class="btn btn-secondary btn-lg">Hủy</a>
             </div>
         }
     </div>

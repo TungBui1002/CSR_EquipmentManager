@@ -1,5 +1,6 @@
 ﻿using CSR_EquipmentManager.Data;
 using CSR_EquipmentManager.Models;
+using CSR_EquipmentManager.Models.ViewModel;
 using OfficeOpenXml;
 using System;
 using System.Data.Entity;
@@ -17,8 +18,18 @@ namespace CSR_EquipmentManager.Controllers
         // GET: DeviceEmails
         public ActionResult Index()
         {
-            var deviceEmails = db.DeviceEmails.Include(d => d.Device);
-            return View(deviceEmails.ToList());
+            var data = db.DeviceEmails
+                .Include(d => d.Device)
+                .ToList()
+                .GroupBy(x => x.Device)
+                .Select(g => new DeviceEmailGroupVM
+                {
+                    Device = g.Key,
+                    Emails = g.ToList()
+                })
+                .ToList();
+
+            return View(data);
         }
 
         // GET: DeviceEmails/Details/5

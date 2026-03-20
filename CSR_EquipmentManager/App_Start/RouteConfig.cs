@@ -16,7 +16,7 @@ namespace CSR_EquipmentManager
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Devices", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "DashBoard", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

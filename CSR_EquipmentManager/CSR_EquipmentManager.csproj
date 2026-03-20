@@ -132,6 +132,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DashBoardController.cs" />
     <Compile Include="Controllers\DeviceEmailsController.cs" />
     <Compile Include="Controllers\DevicesController.cs" />
     <Compile Include="Data\DeviceDbContext.cs" />
@@ -140,6 +141,8 @@
     </Compile>
     <Compile Include="Models\Device.cs" />
     <Compile Include="Models\DeviceEmail.cs" />
+    <Compile Include="Models\ViewModel\DashboardVM.cs" />
+    <Compile Include="Models\ViewModel\DeviceEmailGroupVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -202,6 +205,7 @@
     <Content Include="Views\DeviceEmails\Index.cshtml" />
     <Content Include="Views\Devices\_DeviceFormFields.cshtml" />
     <Content Include="Views\Devices\Import.cshtml" />
+    <Content Include="Views\DashBoard\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

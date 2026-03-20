@@ -19,6 +19,41 @@ namespace CSR_EquipmentManager.Controllers
             return View(db.Devices.ToList());
         }
 
+        // GET: Devices/ExpiringSoon
+        public ActionResult ExpiringSoon()
+        {
+            var now = DateTime.Now.Date;
+
+            var devices = db.Devices
+                .Where(d => d.NextInspectionDate.HasValue &&
+                            DbFunctions.DiffDays(now, d.NextInspectionDate.Value) >= 0 &&   // >= today
+                            DbFunctions.DiffDays(now, d.NextInspectionDate.Value) <= 30)   // <= 30 ngày nữa
+                .ToList();
+
+            ViewBag.Title = "Thiết Bị Sắp Hết Hạn (≤ 30 ngày)";
+            ViewBag.Subtitle = "Danh sách thiết bị cần kiểm định sớm";
+            ViewBag.PageType = "expiring";
+
+            return View("Index", devices);
+        }
+
+        // GET: Devices/Expired
+        public ActionResult Expired()
+        {
+            var now = DateTime.Now.Date;
+
+            var devices = db.Devices
+                .Where(d => d.NextInspectionDate.HasValue &&
+                            DbFunctions.DiffDays(d.NextInspectionDate.Value, now) > 0)   // quá hạn = Next < now
+                .ToList();
+
+            ViewBag.Title = "Thiết Bị Quá Hạn Kiểm Định";
+            ViewBag.Subtitle = "Danh sách thiết bị đã quá hạn, cần xử lý ngay";
+            ViewBag.PageType = "expired";
+
+            return View("Index", devices);
+        }
+
         // GET: Devices/Details/5
         public ActionResult Details(int? id)
         {

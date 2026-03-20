@@ -1,7 +1,9 @@
 ﻿@model IEnumerable<CSR_EquipmentManager.Models.Device>
 
 @{
-    ViewBag.Title = "Danh sách Thiết Bị";
+    var title = ViewBag.Title ?? "Danh Sách Thiết Bị";
+    var subtitle = ViewBag.Subtitle ?? "";
+    var pageType = ViewBag.PageType ?? "all";
 }
 
 <div class="d-flex justify-content-between align-items-center mb-4">
@@ -25,8 +27,9 @@
                         <th>Tên Thiết Bị</th>
                         <th>Model</th>
                         <th>Vị trí thiết bị</th>
-                        <th class="text-center">Ngày NT Kiểm Định</th>
-                        <th class="text-center">Ngày NT Kiểm Định Tiếp Theo</th>
+                        <th class="text-center">Ngày Kiểm Định</th>
+                        <th class="text-center">Ngày Kiểm Định Tiếp Theo</th>
+                        <th>Hết hạn</th>
                         <th class="text-center">Thao Tác</th>
                     </tr>
                 </thead>
@@ -44,6 +47,32 @@
                             <td>@item.Location</td>
                             <td class="text-center">@(item.InspectionDate?.ToString("yyyy/MM/dd") ?? "-")</td>
                             <td class="text-center">@(item.NextInspectionDate?.ToString("yyyy/MM/dd") ?? "-")</td>
+                            <td>
+                                @{
+                                    int? daysLeft = null;
+                                    if (item.NextInspectionDate.HasValue)
+                                    {
+                                        daysLeft = (item.NextInspectionDate.Value - DateTime.Now).Days;
+                                    }
+                                }
+
+                                @if (!daysLeft.HasValue)
+                                {
+                                    <span class="badge bg-secondary">Không có</span>
+                                }
+                                else if (daysLeft < 0)
+                                {
+                                    <span class="badge bg-danger">Quá hạn @Math.Abs(daysLeft.Value) ngày</span>
+                                }
+                                else if (daysLeft <= 30)
+                                {
+                                    <span class="badge bg-warning text-dark">Còn @daysLeft ngày</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-success">Còn @daysLeft ngày</span>
+                                }
+                            </td>
                             <td class="text-center">
                                 <a href="@Url.Action("Details", new { id = item.Id })" class="btn btn-info btn-sm">
                                     <i class="fas fa-eye"></i>

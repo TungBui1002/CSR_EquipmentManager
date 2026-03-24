@@ -4,6 +4,7 @@
     ViewBag.Title = "Dashboard - CSR Equipment Manager";
 }
 
+@Html.AntiForgeryToken()
 <div class="container-fluid py-4">
     <!-- Tiêu đề -->
     <div class="d-flex justify-content-between align-items-center mb-4">
@@ -101,20 +102,59 @@
 
     <div class="row mt-5">
         <div class="col-12 text-center">
-            @using (Html.BeginForm("SendExpirationAlerts", "DashBoard", FormMethod.Post, new { @class = "d-inline" }))
-            {
-                @Html.AntiForgeryToken()
-                <button type="submit" class="btn btn-lg btn-danger">
-                    <i class="fas fa-envelope me-2"></i> Gửi Email Cảnh Báo Thiết Bị Sắp/Quá Hạn
-                </button>
-            }
+            <button id="btnSendEmail" class="btn btn-lg btn-danger">
+                <i class="fas fa-envelope me-2"></i> Gửi Email Cảnh Báo Thiết Bị Sắp Hết Hạn
+            </button>
         </div>
     </div>
+
+    <!-- Toast thông báo -->
+    <div id="toastContainer"></div>
 </div>
 
 @section Scripts {
     <!-- Chart.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Toastr -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <script>
+    toastr.options = {
+        "closeButton": true,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "timeOut": "6000"
+    };
+
+    $('#btnSendEmail').click(function () {
+        var btn = $(this);
+        btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> Đang gửi email...');
+
+        $.ajax({
+            url: '@Url.Action("SendExpirationAlerts", "DashBoard")',
+            type: 'POST',
+            data: {
+                __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
+            },
+            success: function (response) {
+                if (response.success) {
+                    toastr.success(response.message, "Thành công");
+                } else {
+                    toastr.error(response.message, "Thất bại");
+                }
+            },
+            error: function () {
+                toastr.error("Có lỗi xảy ra khi kết nối server. Vui lòng thử lại.", "Lỗi");
+            },
+            complete: function () {
+                btn.prop('disabled', false)
+                   .html('<i class="fas fa-envelope me-2"></i> Gửi Email Cảnh Báo Thiết Bị Sắp Hết Hạn');
+            }
+        });
+    });
+    </script>
 
     <script>
         // Bar Chart

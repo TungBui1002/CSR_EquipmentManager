@@ -149,8 +149,7 @@ namespace CSR_EquipmentManager.Controllers
                     mailMessage.To.Add(email);
                 }
 
-                //mailMessage.CC.Add("VNCSR@adgroup.com.tw");
-
+                mailMessage.CC.Add("VNCSR@adgroup.com.tw");
                 try
                 {
                     smtpClient.Send(mailMessage);

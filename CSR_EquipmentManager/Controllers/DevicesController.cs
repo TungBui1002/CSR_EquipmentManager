@@ -281,6 +281,71 @@ namespace CSR_EquipmentManager.Controllers
             return RedirectToAction("Index");
         }
 
+        // ====================== EXPORT EXCEL TOÀN BỘ DANH SÁCH ======================
+        public ActionResult ExportToExcel()
+        {
+            var devices = db.Devices.ToList();
+
+            using (var package = new OfficeOpenXml.ExcelPackage())
+            {
+                var ws = package.Workbook.Worksheets.Add("DanhSachThietBi");
+
+                // Header
+                ws.Cells[1, 1].Value = "Mã Hồ Sơ";
+                ws.Cells[1, 2].Value = "Tên Thiết Bị";
+                ws.Cells[1, 3].Value = "Xưởng";
+                ws.Cells[1, 4].Value = "Tòa Nhà";
+                ws.Cells[1, 5].Value = "Tầng";
+                ws.Cells[1, 6].Value = "STT";
+                ws.Cells[1, 7].Value = "Mã Vị Trí";
+                ws.Cells[1, 8].Value = "Mã Thiết Bị";
+                ws.Cells[1, 9].Value = "Model";
+                ws.Cells[1, 10].Value = "Công Suất";
+                ws.Cells[1, 11].Value = "Năm Chế Tạo";
+                ws.Cells[1, 12].Value = "Vị Trí Chi Tiết";
+                ws.Cells[1, 13].Value = "Biên Bản Kiểm Định";
+                ws.Cells[1, 14].Value = "Ngày Kiểm Định";
+                ws.Cells[1, 15].Value = "Ngày Kiểm Định Tiếp Theo";
+
+                // Style header
+                using (var range = ws.Cells[1, 1, 1, 15])
+                {
+                    range.Style.Font.Bold = true;
+                    range.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                    range.Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.LightBlue);
+                }
+
+                // Đổ dữ liệu
+                int row = 2;
+                foreach (var d in devices)
+                {
+                    ws.Cells[row, 1].Value = d.HoSoCode;
+                    ws.Cells[row, 2].Value = d.DeviceName;
+                    ws.Cells[row, 3].Value = d.Factory;
+                    ws.Cells[row, 4].Value = d.Building;
+                    ws.Cells[row, 5].Value = d.Floor;
+                    ws.Cells[row, 6].Value = d.STT;
+                    ws.Cells[row, 7].Value = d.PositionCode;
+                    ws.Cells[row, 8].Value = d.DeviceCode;
+                    ws.Cells[row, 9].Value = d.ModelCode;
+                    ws.Cells[row, 10].Value = d.Capacity;
+                    ws.Cells[row, 11].Value = d.ManufactureYear;
+                    ws.Cells[row, 12].Value = d.Location;
+                    ws.Cells[row, 13].Value = d.InspectionReport;
+                    ws.Cells[row, 14].Value = d.InspectionDate?.ToString("yyyy/MM/dd");
+                    ws.Cells[row, 15].Value = d.NextInspectionDate?.ToString("yyyy/MM/dd");
+                    row++;
+                }
+
+                ws.Cells.AutoFitColumns();
+
+                var fileName = $"DanhSach_ThietBi_{DateTime.Now:yyyyMMdd_HHmmss}.xlsx";
+                var contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+
+                return File(package.GetAsByteArray(), contentType, fileName);
+            }
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

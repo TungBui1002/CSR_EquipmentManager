@@ -20,13 +20,25 @@
         }
 
         .navbar {
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(135deg, #1973f8, #266cd3) !important;
+            box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3) !important;
+        }
+
+        .nav-link {
+            color: rgba(255,255,255,0.95) !important;
+            transition: all 0.2s;
+        }
+
+        .nav-link:hover {
+             color: #fff !important;
+             background-color: rgba(255,255,255,0.1);
+             border-radius: 6px;
         }
 
         /* Full width cho nội dung chính */
         .main-content {
             padding: 30px 40px;
-            min-height: calc(100vh - 140px); /* Trừ chiều cao navbar + footer */
+            min-height: calc(100vh - 140px);
         }
 
         .card {
@@ -52,23 +64,25 @@
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
         <div class="container-fluid">
-            <a class="navbar-brand fw-bold fs-4" href="@Url.Action("Index", "DashBoard")">
-                <i class="fas fa-tools me-2"></i> CSR Equipment Manager
+            <a class="navbar-brand fw-bold fs-4 d-flex align-items-center" href="@Url.Action("Index", "DashBoard")">
+                <i class="fas fa-tools me-2"></i>
+                CSR Equipment Manager
             </a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        @Html.ActionLink("Thiết Bị", "Index", "Devices", null, new { @class = "nav-link px-4" })
+                        @Html.ActionLink("Thiết Bị", "Index", "Devices", null, new { @class = "nav-link px-4 fw-medium" })
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("Email Thiết Bị", "Index", "DeviceEmails", null, new { @class = "nav-link px-4" })
+                        @Html.ActionLink("Email Thiết Bị", "Index", "DeviceEmails", null, new { @class = "nav-link px-4 fw-medium" })
                     </li>
                 </ul>
             </div>

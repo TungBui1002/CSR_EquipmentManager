@@ -50,7 +50,7 @@ namespace CSR_EquipmentManager.Controllers
             return Json(new { success = result.success, message = result.message });
         }
 
-        // Action dùng cho Task Scheduler gọi tự động
+        // Action dùng cho Task Scheduler gọi tự độngg
         [AllowAnonymous]
         public ActionResult SendExpirationAlertsAuto()
         {

@@ -9,7 +9,7 @@
     <!-- Tiêu đề -->
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="mb-0 fw-bold">
-            <i class="fas fa-tachometer-alt me-2 text-primary"></i> Dashboard
+            <i class="fas fa-tachometer-alt me-1 text-primary"></i> Dashboard
         </h2>
     </div>
 
@@ -22,7 +22,7 @@
                         <div class="text-primary mb-2">
                             <i class="fas fa-boxes-stacked fa-3x"></i>
                         </div>
-                        <h5 class="card-title">Tổng thiết bị</h5>
+                        <h5 class="card-title">@Lang.T("sum_devices")</h5>
                         <h2 class="fw-bold">@Model.TotalDevices</h2>
                     </div>
                 </div>
@@ -36,7 +36,7 @@
                         <div class="mb-2">
                             <i class="fas fa-check-circle fa-3x"></i>
                         </div>
-                        <h5 class="card-title">Còn hạn tốt</h5>
+                        <h5 class="card-title">@Lang.T("good_devices")</h5>
                         <h2 class="fw-bold">@Model.ValidDevices</h2>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                         <div class="mb-2">
                             <i class="fas fa-clock fa-3x"></i>
                         </div>
-                        <h5 class="card-title">Sắp hết hạn (≤30 ngày)</h5>
+                        <h5 class="card-title">@Lang.T("expiringsoon_devices") (≤30 ngày)</h5>
                         <h2 class="fw-bold">@Model.ExpiringSoonDevices</h2>
                     </div>
                 </div>
@@ -64,7 +64,7 @@
                         <div class="mb-2">
                             <i class="fas fa-triangle-exclamation fa-3x"></i>
                         </div>
-                        <h5 class="card-title">Quá hạn</h5>
+                        <h5 class="card-title">@Lang.T("expired_devices")</h5>
                         <h2 class="fw-bold">@Model.ExpiredDevices</h2>
                     </div>
                 </div>
@@ -79,7 +79,7 @@
         <div class="col-lg-6">
             <div class="card shadow border-0">
                 <div class="card-header bg-light">
-                    <h5 class="mb-0">Phân loại thiết bị theo trạng thái</h5>
+                    <h5 class="mb-0">@Lang.T("dashboard_device_status")</h5>
                 </div>
                 <div class="card-body">
                     <canvas id="statusBarChart" height="200"></canvas>
@@ -91,7 +91,7 @@
         <div class="col-lg-4">
             <div class="card shadow border-0">
                 <div class="card-header bg-light">
-                    <h5 class="mb-0">Tỷ lệ trạng thái thiết bị</h5>
+                    <h5 class="mb-0">@Lang.T("dashboard_device_ratio")</h5>
                 </div>
                 <div class="card-body">
                     <canvas id="statusPieChart" height="200"></canvas>
@@ -103,7 +103,7 @@
     <div class="row mt-5">
         <div class="col-12 text-center">
             <button id="btnSendEmail" class="btn btn-lg btn-danger">
-                <i class="fas fa-envelope me-2"></i> Gửi Email Cảnh Báo Thiết Bị Sắp Hết Hạn
+                <i class="fas fa-envelope me-2"></i> @Lang.T("btn_send_emails")
             </button>
         </div>
     </div>

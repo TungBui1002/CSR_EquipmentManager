@@ -132,6 +132,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DashBoardController.cs" />
     <Compile Include="Controllers\DeviceEmailsController.cs" />
     <Compile Include="Controllers\DevicesController.cs" />
@@ -139,6 +140,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\Lang.cs" />
     <Compile Include="Models\Device.cs" />
     <Compile Include="Models\DeviceEmail.cs" />
     <Compile Include="Models\ViewModel\DashboardVM.cs" />
@@ -206,6 +208,7 @@
     <Content Include="Views\Devices\_DeviceFormFields.cshtml" />
     <Content Include="Views\Devices\Import.cshtml" />
     <Content Include="Views\DashBoard\Index.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

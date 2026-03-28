@@ -1,12 +1,11 @@
 ﻿using CSR_EquipmentManager.Data;
-using CSR_EquipmentManager.Models;
 using CSR_EquipmentManager.Models.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net.Mail;
 using System.Web.Mvc;
-using System.Data.Entity;
 
 namespace CSR_EquipmentManager.Controllers
 {
@@ -16,6 +15,11 @@ namespace CSR_EquipmentManager.Controllers
 
         public ActionResult Index()
         {
+            if (Session["IsLoggedIn"] == null || !(bool)Session["IsLoggedIn"])
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             var now = DateTime.Now.Date;
 
             var devices = db.Devices

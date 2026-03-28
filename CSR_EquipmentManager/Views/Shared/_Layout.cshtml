@@ -78,12 +78,40 @@
 
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
+                    <div class="d-flex justify-content-end mt-1 me-1">
+                        <div class="dropdown">
+                            <button class="btn btn-light dropdown-toggle shadow-sm"
+                                    type="button"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                @(Lang.CurrentLang == "zh" ? "🇹🇼 中文" : "🇻🇳 VI")
+                            </button>
+
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li>
+                                    <a class="dropdown-item" href="/Account/ChangeLanguage?lang=vi">
+                                        🇻🇳 Tiếng Việt
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="/Account/ChangeLanguage?lang=zh">
+                                        🇹🇼 繁體中文
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
                     <li class="nav-item">
-                        @Html.ActionLink("Thiết Bị", "Index", "Devices", null, new { @class = "nav-link px-4 fw-medium" })
+                        @Html.ActionLink(@Lang.T("device"), "Index", "Devices", null, new { @class = "nav-link px-4 fw-medium" })
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("Email Thiết Bị", "Index", "DeviceEmails", null, new { @class = "nav-link px-4 fw-medium" })
+                        @Html.ActionLink(@Lang.T("email_Device"), "Index", "DeviceEmails", null, new { @class = "nav-link px-4 fw-medium" })
                     </li>
+                    <li class="nav-item">
+                        @Html.ActionLink(@Lang.T("logout"), "Logout", "Account", null, new { @class = "nav-link px-4 text-white" })
+                    </li>
+
                 </ul>
             </div>
         </div>

@@ -18,6 +18,11 @@ namespace CSR_EquipmentManager.Controllers
         // GET: DeviceEmails
         public ActionResult Index()
         {
+            if (Session["IsLoggedIn"] == null || !(bool)Session["IsLoggedIn"])
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             var data = db.DeviceEmails
                 .Include(d => d.Device)
                 .ToList()
@@ -35,6 +40,11 @@ namespace CSR_EquipmentManager.Controllers
         // GET: DeviceEmails/Details/5
         public ActionResult Details(int? id)
         {
+            if (Session["IsLoggedIn"] == null || !(bool)Session["IsLoggedIn"])
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -50,6 +60,11 @@ namespace CSR_EquipmentManager.Controllers
         // GET: DeviceEmails/Create
         public ActionResult Create()
         {
+            if (Session["IsLoggedIn"] == null || !(bool)Session["IsLoggedIn"])
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             ViewBag.DeviceId = new SelectList(db.Devices, "Id", "HoSoCode");
             return View();
         }

@@ -19,7 +19,7 @@
 
     <div>
         <a href="@Url.Action("Create")" class="btn btn-success btn-lg me-2">
-            <i class="fas fa-plus"></i> Thêm Thiết Bị Mới
+            <i class="fas fa-plus"></i> @Lang.T("btn_add_device")"
         </a>
         @if (pageType == "expiring")
         {
@@ -47,7 +47,7 @@
 <div class="row mb-3">
     <div class="col-md-6">
         <div class="input-group">
-            <input type="text" id="searchInput" class="form-control" placeholder="Tìm kiếm...">
+            <input type="text" id="searchInput" class="form-control" placeholder="@Lang.T("label_search")">
             <span class="input-group-text"><i class="fas fa-search"></i></span>
         </div>
     </div>
@@ -59,18 +59,18 @@
             <table class="table table-hover align-middle mb-0" id="devicesTable">
                 <thead class="table-light">
                     <tr>
-                        <th class="text-center">Mã Hồ Sơ</th>
-                        <th class="text-center">Xưởng</th>
-                        <th class="text-center">Tòa Nhà - Tầng</th>
-                        <th class="text-center">STT - Vị Trí</th>
-                        <th>Mã Thiết Bị</th>
-                        <th>Tên Thiết Bị</th>
-                        <th>Model</th>
-                        <th>Vị trí thiết bị</th>
-                        <th class="text-center">Ngày Kiểm Định</th>
-                        <th class="text-center">Ngày Kiểm Định Tiếp Theo</th>
-                        <th>Hết hạn</th>
-                        <th class="text-center">Thao Tác</th>
+                        <th class="text-center">@Lang.T("ID_FileDevice")</th>
+                        <th class="text-center">@Lang.T("Factory_Device")</th>
+                        <th class="text-center">@Lang.T("Building_Floor_Device")</th>
+                        <th class="text-center">@Lang.T("STT_PositionCode_Device")</th>
+                        <th>@Lang.T("ID_Device")</th>
+                        <th>@Lang.T("Name_Device")</th>
+                        <th>@Lang.T("Model_Device")</th>
+                        <th>@Lang.T("Positon_Device")</th>
+                        <th class="text-center">@Lang.T("Inspection_Date_Device")</th>
+                        <th class="text-center">@Lang.T("Next_Inspection_Date_Device")</th>
+                        <th>@Lang.T("Expried_Device")</th>
+                        <th class="text-center">@Lang.T("Col_Action")</th>
                     </tr>
                 </thead>
                 <tbody>

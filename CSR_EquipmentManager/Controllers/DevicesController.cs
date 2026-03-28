@@ -16,6 +16,11 @@ namespace CSR_EquipmentManager.Controllers
         // GET: Devices
         public ActionResult Index()
         {
+            if (Session["IsLoggedIn"] == null || !(bool)Session["IsLoggedIn"])
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             return View(db.Devices.ToList());
         }
 
@@ -57,6 +62,11 @@ namespace CSR_EquipmentManager.Controllers
         // GET: Devices/Details/5
         public ActionResult Details(int? id)
         {
+            if (Session["IsLoggedIn"] == null || !(bool)Session["IsLoggedIn"])
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -72,6 +82,11 @@ namespace CSR_EquipmentManager.Controllers
         // GET: Devices/Create
         public ActionResult Create()
         {
+            if (Session["IsLoggedIn"] == null || !(bool)Session["IsLoggedIn"])
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             return View();
         }
 

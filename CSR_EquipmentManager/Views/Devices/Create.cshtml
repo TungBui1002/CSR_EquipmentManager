@@ -23,18 +23,18 @@
 
                 <div class="col-lg-6">
                     <div class="alert alert-info">
-                        <h6><i class="fas fa-lightbulb"></i> Hướng dẫn</h6>
+                        <h6><i class="fas fa-lightbulb"></i> @Lang.T("lable_Instruction")</h6>
                         <ul class="mb-0">
-                            <li>Tên thiết bị là bắt buộc</li>
-                            <li>Ngày kiểm định nên nhập theo định dạng yyyy/MM/dd</li>
-                            <li>Sau khi tạo xong bạn có thể thêm Email cho thiết bị</li>
+                            <li>@Lang.T("li_1")</li>
+                            <li>@Lang.T("li_2")</li>
+                            <li>@Lang.T("li_3")</li>
                         </ul>
                     </div>
                     <a href="@Url.Action("DownloadTemplate")" class="btn btn-outline-secondary btn-lg">
-                        <i class="fas fa-download"></i> Tải Mẫu Excel
+                        <i class="fas fa-download"></i> @Lang.T("btn_DownloadExcel")
                     </a>
                     <a href="@Url.Action("Import")" class="btn btn-outline-primary btn-lg">
-                        <i class="fas fa-upload"></i> Import Từ Excel
+                        <i class="fas fa-upload"></i> @Lang.T("btn_ImportExcel")
                     </a>
                 </div>
             </div>

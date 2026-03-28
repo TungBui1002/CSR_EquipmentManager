@@ -3,19 +3,19 @@
 <div class="row g-3">
 
     <div class="col-md-6">
-        <label class="form-label fw-bold">Mã hồ sơ</label>
+        <label class="form-label fw-bold">@Lang.T("ID_FileDevice")</label>
         @Html.TextBoxFor(m => m.HoSoCode, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.HoSoCode, "", new { @class = "text-danger" })
     </div>
 
     <div class="col-md-6">
-        <label class="form-label fw-bold text-danger">Tên thiết bị *</label>
+        <label class="form-label fw-bold text-danger">@Lang.T("Name_Device") *</label>
         @Html.TextBoxFor(m => m.DeviceName, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.DeviceName, "", new { @class = "text-danger" })
     </div>
 
     <div class="col-md-4">
-        <label class="form-label fw-bold">Xưởng</label>
+        <label class="form-label fw-bold">Factory_Device</label>
         @Html.TextBoxFor(m => m.Factory, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.Factory, "", new { @class = "text-danger" })
     </div>
@@ -44,7 +44,7 @@
     </div>
 
     <div class="col-md-4">
-        <label class="form-label fw-bold">Mã thiết bị</label>
+        <label class="form-label fw-bold">@Lang.T("ID_Device")</label>
         @Html.TextBoxFor(m => m.DeviceCode, new { @class = "form-control" })
     </div>
 
@@ -64,7 +64,7 @@
     </div>
 
     <div class="col-md-8">
-        <label class="form-label fw-bold">Vị trí thiết bị</label>
+        <label class="form-label fw-bold">@Lang.T("Positon_Device")</label>
         @Html.TextBoxFor(m => m.Location, new { @class = "form-control" })
     </div>
 
@@ -74,12 +74,12 @@
     </div>
 
     <div class="col-md-3">
-        <label class="form-label fw-bold">Ngày kiểm định</label>
+        <label class="form-label fw-bold">@Lang.T("Inspection_Date_Device")</label>
         @Html.TextBoxFor(m => m.InspectionDate, "{0:yyyy-MM-dd}",new { @class = "form-control", type = "date" })
     </div>
 
     <div class="col-md-3">
-        <label class="form-label fw-bold">Ngày kiểm định tiếp theo</label>
+        <label class="form-label fw-bold">@Lang.T("Next_Inspection_Date_Device")</label>
         @Html.TextBoxFor(m => m.NextInspectionDate, "{0:yyyy-MM-dd}",new { @class = "form-control", type = "date" })
     </div>
 

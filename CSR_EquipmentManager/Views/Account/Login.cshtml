@@ -1,0 +1,72 @@
+﻿@{
+    ViewBag.Title = "Đăng Nhập - CSR Equipment Manager";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<div class="d-flex justify-content-end mt-1 me-1">
+    <div class="dropdown">
+        <button class="btn btn-light dropdown-toggle shadow-sm"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false">
+            @(Lang.CurrentLang == "zh" ? "🇹🇼 中文" : "🇻🇳 VI")
+        </button>
+
+        <ul class="dropdown-menu dropdown-menu-end">
+            <li>
+                <a class="dropdown-item" href="/Account/ChangeLanguage?lang=vi">
+                    🇻🇳 Tiếng Việt
+                </a>
+            </li>
+            <li>
+                <a class="dropdown-item" href="/Account/ChangeLanguage?lang=zh">
+                    🇹🇼 繁體中文
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>*@
+
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-5">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white text-center py-4">
+                    <h4 class="mb-0">
+                        <i class="fas fa-lock me-2"></i> @Lang.T("login_header")
+                    </h4>
+                </div>
+                <div class="card-body p-5">
+                    @if (ViewBag.Error != null)
+                    {
+                        <div class="alert alert-danger text-center">
+                            @ViewBag.Error
+                        </div>
+                    }
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">@Lang.T("username")</label>
+                            <input type="text" name="username" class="form-control form-control-lg" placeholder="admin" required autofocus />
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">@Lang.T("password")</label>
+                            <input type="password" name="password" class="form-control form-control-lg" placeholder="password" required />
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-lg w-100">
+                            @Lang.T("login")
+                        </button>
+                    }
+                </div>
+                <div class="card-footer text-center text-muted py-3">
+                    CSR Equipment Manager © @DateTime.Now.Year
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -116,15 +116,17 @@ namespace CSR_EquipmentManager.Controllers
 
                 // Tạo bảng thiết bị một lần
                 var deviceTable = "<table border='1' cellpadding='8' style='border-collapse: collapse; width:100%;'>";
-                deviceTable += "<tr style='background:#f0f0f0;'><th>Mã HS</th><th>Mã Thiết Bị</th><th>Tên Thiết Bị</th><th>Ngày KT Tiếp Theo</th><th>Còn lại</th></tr>";
+                deviceTable += "<tr style='background:#f0f0f0;'><th>Mã thiết bị</th><th>Tên thiết bị</th><th>Xưởng</th><th>Tòa nhà - Tầng</th><th>Vị trí</th><th>Ngày kiểm định tiếp theo</th><th>Còn lại</th></tr>";
 
                 foreach (var device in devices)
                 {
                     int daysLeft = (device.NextInspectionDate.Value - now).Days;
                     deviceTable += $"<tr>" +
-                                   $"<td>{device.HoSoCode}</td>" +
                                    $"<td>{device.DeviceCode}</td>" +
                                    $"<td>{device.DeviceName}</td>" +
+                                   $"<td>{device.Factory}</td>" +
+                                   $"<td>{device.Building} - {device.Floor}</td>" +
+                                   $"<td>{device.Location}</td>" +
                                    $"<td>{device.NextInspectionDate.Value:yyyy/MM/dd}</td>" +
                                    $"<td style='color:orange; font-weight:bold;'>Còn {daysLeft} ngày</td>" +
                                    $"</tr>";
@@ -154,6 +156,8 @@ namespace CSR_EquipmentManager.Controllers
                 }
 
                 mailMessage.CC.Add("VNCSR@adgroup.com.tw");
+                mailMessage.CC.Add("tung.bui@adgroup.com.tw");
+
                 try
                 {
                     smtpClient.Send(mailMessage);

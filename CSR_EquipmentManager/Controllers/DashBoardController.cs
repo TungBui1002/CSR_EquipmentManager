@@ -1,11 +1,16 @@
 ﻿using CSR_EquipmentManager.Data;
 using CSR_EquipmentManager.Models.ViewModel;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net.Http;
 using System.Net.Mail;
+using System.Text;
+using System.Threading.Tasks;
 using System.Web.Mvc;
+using static CSR_EquipmentManager.Data.AIGermini;
 
 namespace CSR_EquipmentManager.Controllers
 {
@@ -171,6 +176,74 @@ namespace CSR_EquipmentManager.Controllers
             }
 
             return (true, $"Đã gửi cảnh báo thành công đến {successCount} email (tổng {devices.Count} thiết bị).");
+        }
+
+        //======================= AI CHATBOT =======================
+
+        [HttpPost]
+        public async Task<JsonResult> ChatWithAI(string userMessage)
+        {
+            try
+            {
+                // Ép dùng TLS 1.2 cho .NET 4.7.2
+                System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
+
+                // Key CHUẨN (Không được sai 1 ký tự nào)
+                string apiKey = "AIzaSyBxBZjp07Xuf0br9llo9dVUfi4t71sCk24";
+
+                // URL CHUẨN
+                string apiUrl = $"https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key={apiKey}";
+
+                var now = DateTime.Now;
+
+                // 1. Lấy dữ liệu chi tiết hơn để "nhồi" cho AI
+                var expiredCount = db.Devices.Count(d => d.NextInspectionDate < now);
+
+                // Lấy tên 5 thiết bị sắp hết hạn nhất để AI biết đường mà kể tên
+                var expiringSoonList = db.Devices
+                    .Where(d => d.NextInspectionDate >= now && DbFunctions.DiffDays(now, d.NextInspectionDate) <= 30)
+                    .OrderBy(d => d.NextInspectionDate)
+                    .Take(5)
+                    .Select(d => d.DeviceName)
+                    .ToList();
+
+                string deviceNames = string.Join(", ", expiringSoonList);
+                int expiringCount = expiringSoonList.Count;
+
+                // 2. Tạo Prompt thông minh hơn
+                string systemPrompt = $"Bạn là trợ lý AI của hệ thống CSR Equipment Manager. " +
+                                      $"Dữ liệu hiện tại: {expiredCount} máy đã quá hạn, {expiringCount} máy sắp hết hạn (gồm: {deviceNames}). " +
+                                      $"Hãy trả lời câu hỏi của người dùng ngắn gọn, chuyên nghiệp bằng tiếng Việt: {userMessage}";
+
+                var requestBody = new
+                {
+                    contents = new[] { new { parts = new[] { new { text = systemPrompt } } } }
+                };
+
+                using (var client = new HttpClient())
+                {
+                    var jsonPayload = JsonConvert.SerializeObject(requestBody);
+                    var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");  
+
+                    var response = await client.PostAsync(apiUrl, content);
+                    var resString = await response.Content.ReadAsStringAsync();
+
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        return Json(new { reply = "Lỗi API: " + resString });
+                    }
+
+                    var geminiRes = JsonConvert.DeserializeObject<GeminiResponse>(resString);
+                    string reply = geminiRes?.candidates?[0]?.content?.parts?[0]?.text
+                                   ?? "AI nhận dữ liệu trống, hãy thử lại.";
+
+                    return Json(new { reply = reply });
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new { reply = "Lỗi Code C#: " + ex.Message });
+            }
         }
     }
 }

@@ -136,6 +136,7 @@
     <Compile Include="Controllers\DashBoardController.cs" />
     <Compile Include="Controllers\DeviceEmailsController.cs" />
     <Compile Include="Controllers\DevicesController.cs" />
+    <Compile Include="Data\AIGermini.cs" />
     <Compile Include="Data\DeviceDbContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<CSR_EquipmentManager.Models.Device>
 
 @{
-    var title = ViewBag.Title ?? "Danh Sách Thiết Bị";
+    var title = ViewBag.Title ?? @Lang.T("Title_EquipmentList");
     var subtitle = ViewBag.Subtitle ?? "";
     var pageType = ViewBag.PageType ?? "all";
 }
@@ -19,7 +19,7 @@
 
     <div>
         <a href="@Url.Action("Create")" class="btn btn-success btn-lg me-2">
-            <i class="fas fa-plus"></i> @Lang.T("btn_add_device")"
+            <i class="fas fa-plus"></i> @Lang.T("btn_add_device")
         </a>
         @if (pageType == "expiring")
         {

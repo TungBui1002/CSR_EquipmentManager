@@ -14,6 +14,7 @@ public static class Lang
                 { "logout", "Đăng xuất" },
                 { "username", "Tên đăng nhập" },
                 { "password", "Mật khẩu" },
+                { "date", "≤30 Ngày" },
                 { "device", "Thiết bị" },
                 { "email_Device", "Email Thiết bị" },
                 { "sum_devices", "Tổng thiết bị" },
@@ -43,6 +44,10 @@ public static class Lang
                 { "li_1", "Tên thiết bị là bắt buộc" },
                 { "li_2", "Ngày kiểm định nên nhập theo định dạng yyyy/MM/dd" },
                 { "li_3", "Sau khi tạo xong bạn có thể thêm Email cho thiết bị" },
+                { "Title_Email", "Danh sách Email Thiết Bị" },
+                { "btn_AddEmail", "Thêm Email Mới" },
+                { "Title_EquipmentList", "Danh sách thiết bị" },
+                { "Title_AddNewEmail", "Thêm Email Cho Thiết Bị" },
                 { "dashboard", "Trang tổng quan" }
             }
         },
@@ -53,6 +58,7 @@ public static class Lang
                 { "logout", "登出" },
                 { "username", "帳號" },
                 { "password", "密碼" },
+                { "date", "≤30天" },
                 { "device", "裝置" },
                 { "email_Device", "Email" },
                 { "sum_devices", "總設備" },
@@ -82,6 +88,10 @@ public static class Lang
                 { "li_1", "設備名稱為必填項。" },
                 { "li_2", "檢查日期應以 yyyy/MM/dd 的格式輸入。" },
                 { "li_3", "建立完成後，您可以將電子郵件地址新增至裝置。" },
+                { "Title_Email", "設備電子郵件列表" },
+                { "btn_AddEmail", "新增電子郵件" },
+                { "Title_EquipmentList", "設備清單" },
+                { "Title_AddNewEmail", "將電子郵件新增至設備" },
                 { "dashboard", "儀表板" }
             }
         }

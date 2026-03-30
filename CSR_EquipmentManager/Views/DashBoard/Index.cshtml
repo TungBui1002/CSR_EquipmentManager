@@ -1,7 +1,7 @@
 ﻿@model CSR_EquipmentManager.Models.ViewModel.DashboardVM
 
 @{
-    ViewBag.Title = "Dashboard - CSR Equipment Manager";
+    ViewBag.Title = "Dashboard";
 }
 
 @Html.AntiForgeryToken()
@@ -50,7 +50,7 @@
                         <div class="mb-2">
                             <i class="fas fa-clock fa-3x"></i>
                         </div>
-                        <h5 class="card-title">@Lang.T("expiringsoon_devices") (≤30 ngày)</h5>
+                        <h5 class="card-title">@Lang.T("expiringsoon_devices") @Lang.T("date")</h5>
                         <h2 class="fw-bold">@Model.ExpiringSoonDevices</h2>
                     </div>
                 </div>
